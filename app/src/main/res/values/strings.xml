@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">adwi</string>
+    <string name="title_activity_profile_d">ProfileActivityD</string>
+    <string name="title_activity_spotify">Spotify</string>
+    <string name="title_activity_log_in_page">LogInPage</string>
+    <string name="title_activity_register">register</string>
+    <string name="title_activity_splash_screen">SplashScreen</string>
+    <string name="title_activity_spotify_login">SpotifyLogin</string>
+    <string name="title_activity_spotify_ui">SpotifyUI</string>
+    <string name="title_activity_dashboard">DashboardActivity</string>
+    <string name="title_activity_register_spotify">RegisterSpotify</string>
+    <string name="title_activity_spotify_dashboard_activity.kt">SpotifyDashboardActivity.kt</string>
+</resources>

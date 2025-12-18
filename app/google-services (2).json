@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "321888068254",
+    "firebase_url": "https://adwi-c7f8e-default-rtdb.firebaseio.com",
+    "project_id": "adwi-c7f8e",
+    "storage_bucket": "adwi-c7f8e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:321888068254:android:8038e34d1e53135fa6118f",
+        "android_client_info": {
+          "package_name": "com.example.adwi"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEI5-J6Lbf2OPKnoPnBGAxS6R0VpVI0a8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:321888068254:android:7c237e5a43102ef6a6118f",
+        "android_client_info": {
+          "package_name": "com.example.c37b"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEI5-J6Lbf2OPKnoPnBGAxS6R0VpVI0a8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
