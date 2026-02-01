@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.example.adwi" />
+                  <option name="mobileSdkAppId" value="1:321888068254:android:8038e34d1e53135fa6118f" />
+                  <option name="projectId" value="adwi-c7f8e" />
+                  <option name="projectNumber" value="321888068254" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

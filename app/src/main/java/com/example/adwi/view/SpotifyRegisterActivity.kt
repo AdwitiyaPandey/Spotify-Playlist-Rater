@@ -10,7 +10,9 @@ class SpotifyRegisterActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            SpotifyRegisterScreen()
+            SpotifyRegisterScreen(onBackToLogin = {
+                finish()
+            })
         }
     }
 }

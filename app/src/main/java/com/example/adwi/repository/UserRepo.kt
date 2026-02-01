@@ -1,10 +1,11 @@
 package com.example.adwi.repository
 
-import android.content.Context
 import com.example.adwi.model.UserModel
 
 interface UserRepo {
-    fun login(context: Context, user: UserModel): Boolean
-    fun logout(context: Context)
-    fun isLoggedIn(context: Context): Boolean
+    fun register(user: UserModel, onResult: (Boolean, String?) -> Unit)
+    fun login(user: UserModel, onResult: (Boolean, String?) -> Unit)
+    fun logout()
+    fun isLoggedIn(): Boolean
+    fun getCurrentUserEmail(): String?
 }
