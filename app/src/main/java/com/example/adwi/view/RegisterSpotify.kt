@@ -22,9 +22,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.adwi.R
-import com.example.adwi.view.SpotifyLogin
 import java.util.Calendar
-
 
 @Composable
 fun SpotifyRegisterScreen() {

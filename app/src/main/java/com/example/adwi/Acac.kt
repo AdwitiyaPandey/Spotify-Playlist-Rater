@@ -1,4 +1,4 @@
-package com.example.adwi.ui.theme
+package com.example.adwi
 
 import android.app.Activity
 import android.content.Context
@@ -30,7 +30,6 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -50,13 +49,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.adwi.ProfileActivityD
 import com.example.adwi.ui.theme.Blue
-import com.example.adwi.ui.theme.AdwiTheme
 import com.example.adwi.ui.theme.Purple80
-import com.example.adwi.R
 import com.example.adwi.ui.theme.ui.theme.Register
-
 
 class LoginActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -75,7 +70,7 @@ fun Acac() {
     var visibility by remember { mutableStateOf(false) }
 
     val context = LocalContext.current
-    val activity = context as Activity
+    val activity = context as? Activity
 
     val sharedPreferences = context.getSharedPreferences("User", Context.MODE_PRIVATE)
 
@@ -87,7 +82,8 @@ fun Acac() {
             modifier = Modifier
                 .fillMaxSize()
                 .padding(padding)
-                .background(Color.White)
+                .background(Color.White),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Spacer(modifier = Modifier.height(40.dp))
             Text(
@@ -102,12 +98,12 @@ fun Acac() {
             )
 
             Text(
-                "This app is a ecommere app. welcome to app here you can browse products. Lorem epsum hljklnabva",
+                "This app is an ecommerce app. Welcome to the app, here you can browse products.",
                 style = TextStyle(
                     textAlign = TextAlign.Center,
                     color = Color.Gray.copy(0.8f)
                 ),
-                modifier = Modifier.padding(vertical = 20.dp)
+                modifier = Modifier.padding(vertical = 20.dp, horizontal = 16.dp)
             )
 
             Row(
@@ -225,45 +221,50 @@ fun Acac() {
                             else painterResource(
                                 R.drawable.baseline_visibility_24
                             ),
-
-
                             contentDescription = null
                         )
                     }
                 }
             )
 
-            Button(onClick = {
-                if(localEmail == email && localPassword == password){
-                    val intent = Intent(
-                        context,
-                        ProfileActivityD::class.java
-                    )
-                    context.startActivity(intent)
-                    activity.finish()
-                }else{
-                    Toast.makeText(context,"Invalid login", Toast.LENGTH_LONG).show()
-                }
+            Spacer(modifier = Modifier.height(20.dp))
 
-            }) {
+            Button(
+                onClick = {
+                    if(localEmail == email && localPassword == password && email.isNotEmpty()){
+                        val intent = Intent(
+                            context,
+                            ProfileActivityD::class.java
+                        )
+                        context.startActivity(intent)
+                        activity?.finish()
+                    } else {
+                        Toast.makeText(context,"Invalid login", Toast.LENGTH_LONG).show()
+                    }
+                },
+                modifier = Modifier.fillMaxWidth().padding(horizontal = 15.dp)
+            ) {
                 Text("Login")
             }
-            Text("Don't have an account, Signup", modifier = Modifier.clickable {
-                val intent = Intent(
-                    context,
-                    Register::class.java
-                )
-
-                context.startActivity(intent)
-
-            })
-
+            
+            Spacer(modifier = Modifier.height(16.dp))
+            
+            Text("Don't have an account? Signup", 
+                modifier = Modifier.clickable {
+                    val intent = Intent(
+                        context,
+                        Register::class.java
+                    )
+                    context.startActivity(intent)
+                },
+                color = Blue
+            )
         }
     }
 }
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 fun PreviewAcac() {
-    LoginBody()
+    Acac()
 }

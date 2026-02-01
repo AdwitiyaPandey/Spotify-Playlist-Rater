@@ -8,16 +8,16 @@
       <SelectionState runConfigName="SplashScreenActivity">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="SplashScreenActivity (2)">
+      <SelectionState runConfigName="DashboardActivity (2)">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="SpotifyLogin">
+      <SelectionState runConfigName="DashboardActivity (3)">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="SplashScreenActivity (1)">
+      <SelectionState runConfigName="SpotifyRegisterPreview">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="DashboardActivity">
+      <SelectionState runConfigName="SpotifyDashboardActivity">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>
