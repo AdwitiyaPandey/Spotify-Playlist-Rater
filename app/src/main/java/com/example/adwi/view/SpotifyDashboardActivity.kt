@@ -1,8 +1,10 @@
 package com.example.adwi.view
-import android.content.Context
+
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
@@ -14,34 +16,42 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.example.adwi.repository.UserRepoImpl
 
-class DashboardActivity : ComponentActivity() {
+class SpotifyDashboardActivity : ComponentActivity() {
+    private val userRepo = UserRepoImpl()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
-        val prefs = getSharedPreferences("auth", Context.MODE_PRIVATE)
-        val isLoggedIn = prefs.getBoolean("loggedIn", false)
-
-        if (!isLoggedIn) {
+        if (!userRepo.isLoggedIn()) {
+            startActivity(Intent(this, SpotifyLogin::class.java))
             finish()
             return
         }
 
         setContent {
             MaterialTheme {
-                DashboardScreen()
+                DashboardScreen(
+                    userEmail = userRepo.getCurrentUserEmail() ?: "User",
+                    onLogout = {
+                        userRepo.logout()
+                        startActivity(Intent(this, SpotifyLogin::class.java))
+                        finish()
+                    }
+                )
             }
         }
     }
 }
 
 @Composable
-fun DashboardScreen() {
-
+fun DashboardScreen(userEmail: String, onLogout: () -> Unit) {
     var selectedIndex by remember { mutableStateOf(0) }
 
-    val items = listOf(
+    val bottomNavItems = listOf(
         BottomNavItem("Home", Icons.Default.Home),
         BottomNavItem("Search", Icons.Default.Search),
         BottomNavItem("Profile", Icons.Default.Person)
@@ -50,7 +60,7 @@ fun DashboardScreen() {
     Scaffold(
         bottomBar = {
             NavigationBar(containerColor = Color.Black) {
-                items.forEachIndexed { index, item ->
+                bottomNavItems.forEachIndexed { index, item ->
                     NavigationBarItem(
                         selected = selectedIndex == index,
                         onClick = { selectedIndex = index },
@@ -73,18 +83,37 @@ fun DashboardScreen() {
             }
         }
     ) { padding ->
-
-
-        Box(
+        Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(padding),
-            contentAlignment = Alignment.Center
+                .padding(padding)
+                .background(Color.Black),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
         ) {
             Text(
-                text = "${items[selectedIndex].label} Screen",
+                text = "Welcome, $userEmail",
+                color = Color.White,
+                fontSize = 20.sp,
+                style = MaterialTheme.typography.headlineMedium
+            )
+
+            Spacer(modifier = Modifier.height(20.dp))
+
+            Text(
+                text = "${bottomNavItems[selectedIndex].label} Content Goes Here",
                 color = Color.Gray
             )
+
+            if (selectedIndex == 2) { // Profile tab
+                Spacer(modifier = Modifier.height(40.dp))
+                Button(
+                    onClick = onLogout,
+                    colors = ButtonDefaults.buttonColors(containerColor = Color.Red)
+                ) {
+                    Text("Logout", color = Color.White)
+                }
+            }
         }
     }
 }
@@ -98,6 +127,6 @@ data class BottomNavItem(
 @Composable
 fun DashboardPreview() {
     MaterialTheme {
-        DashboardScreen()
+        DashboardScreen("test@example.com", {})
     }
 }
