@@ -78,13 +78,55 @@ fun DashboardScreen() {
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(padding),
-            contentAlignment = Alignment.Center
+                .padding(padding)
+                .background(Color.Black)
         ) {
-            Text(
-                text = "${items[selectedIndex].label} Screen",
-                color = Color.Gray
-            )
+            // Show Top LazyRow only on Home tab for cleaner look
+            if (selectedIndex == 0) {
+                Spacer(modifier = Modifier.height(64.dp))
+                LazyRow(
+                    contentPadding = PaddingValues(horizontal = 16.dp),
+                    horizontalArrangement = Arrangement.spacedBy(12.dp)
+                ) {
+                    items(topRowItems) { item ->
+                        Column(
+                            horizontalAlignment = Alignment.CenterHorizontally,
+                            modifier = Modifier.width(100.dp)
+                        ) {
+                            Image(
+                                painter = painterResource(id = item.imageRes),
+                                contentDescription = item.title,
+                                modifier = Modifier
+                                    .size(100.dp)
+                                    .clip(RoundedCornerShape(8.dp)),
+                                contentScale = ContentScale.Crop
+                            )
+                            Spacer(modifier = Modifier.height(4.dp))
+                            Text(
+                                text = item.title,
+                                color = Color.White,
+                                fontSize = 12.sp,
+                                fontWeight = FontWeight.Medium,
+                                maxLines = 1
+                            )
+                        }
+                    }
+                }
+            } else {
+                Spacer(modifier = Modifier.height(32.dp))
+            }
+
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .weight(1f)
+            ) {
+                when (selectedIndex) {
+                    0 -> HomeScreen(userEmail = userEmail)
+                    1 -> SearchScreen()
+                    2 -> ProfileScreen(userEmail = userEmail, onLogout = onLogout)
+                }
+            }
         }
     }
 }
