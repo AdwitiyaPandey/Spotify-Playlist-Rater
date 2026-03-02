@@ -49,10 +49,57 @@ fun SloginBody() {
     var password by remember { mutableStateOf("") }
     var visibility by remember { mutableStateOf(false) }
     var isLoading by remember { mutableStateOf(false) }
+    var showForgotDialog by remember { mutableStateOf(false) }
+    var forgotEmail by remember { mutableStateOf("") }
 
     val context = LocalContext.current
     val activity = context as? Activity
     val userRepo = remember { UserRepoImpl() }
+
+    if (showForgotDialog) {
+        AlertDialog(
+            onDismissRequest = { showForgotDialog = false },
+            title = { Text("Reset Password") },
+            text = {
+                Column {
+                    Text("Enter your email address to receive a password reset link.")
+                    Spacer(modifier = Modifier.height(8.dp))
+                    OutlinedTextField(
+                        value = forgotEmail,
+                        onValueChange = { forgotEmail = it },
+                        label = { Text("Email") },
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                }
+            },
+            confirmButton = {
+                Button(
+                    onClick = {
+                        if (forgotEmail.isNotEmpty()) {
+                            userRepo.forgotPassword(forgotEmail) { success, error ->
+                                if (success) {
+                                    Toast.makeText(context, "Reset email sent!", Toast.LENGTH_SHORT).show()
+                                    showForgotDialog = false
+                                } else {
+                                    Toast.makeText(context, "Error: $error", Toast.LENGTH_SHORT).show()
+                                }
+                            }
+                        } else {
+                            Toast.makeText(context, "Please enter email", Toast.LENGTH_SHORT).show()
+                        }
+                    },
+                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF1DB954))
+                ) {
+                    Text("Send", color = Color.White)
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { showForgotDialog = false }) {
+                    Text("Cancel")
+                }
+            }
+        )
+    }
 
     Scaffold { padding ->
         Column(
@@ -125,7 +172,18 @@ fun SloginBody() {
                 }
             )
 
-            Spacer(modifier = Modifier.height(30.dp))
+            Row(
+                modifier = Modifier.fillMaxWidth().padding(horizontal = 15.dp, vertical = 8.dp),
+                horizontalArrangement = Arrangement.End
+            ) {
+                Text(
+                    text = "Forgot Password?",
+                    color = Color(0xFF1DB954),
+                    modifier = Modifier.clickable { showForgotDialog = true }
+                )
+            }
+
+            Spacer(modifier = Modifier.height(16.dp))
 
             if (isLoading) {
                 CircularProgressIndicator(color = Color(0xFF1DB954))
@@ -173,4 +231,10 @@ fun SloginBody() {
             }
         }
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun SpotifyLoginPreview() {
+    SloginBody()
 }
