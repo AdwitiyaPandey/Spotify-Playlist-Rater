@@ -19,6 +19,7 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -27,7 +28,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.adwi.R
+import com.example.adwi.repository.UserRepoImpl
 import com.example.adwi.ui.theme.LogInPage
+import com.example.adwi.view.SpotifyDashboardActivity
 import kotlinx.coroutines.delay
 
 class SplashScreen : ComponentActivity() {
@@ -44,10 +47,16 @@ class SplashScreen : ComponentActivity() {
 fun SplashBody() {
     val context = LocalContext.current
     val activity = context as? Activity
+    val userRepo = remember { UserRepoImpl() }
 
     LaunchedEffect(Unit) {
         delay(2000)
-        val intent = Intent(context, LogInPage::class.java)
+        val targetActivity = if (userRepo.isLoggedIn()) {
+            SpotifyDashboardActivity::class.java
+        } else {
+            LogInPage::class.java
+        }
+        val intent = Intent(context, targetActivity)
         context.startActivity(intent)
         activity?.finish()
     }
