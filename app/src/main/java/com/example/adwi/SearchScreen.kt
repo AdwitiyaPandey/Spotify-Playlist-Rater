@@ -59,18 +59,25 @@ fun SearchScreen() {
         R.drawable.pop6, R.drawable.pop7, R.drawable.pop8, R.drawable.pop9, R.drawable.pop10
     )
 
+    val hiphopImages = listOf(
+        R.drawable.hiphop1, R.drawable.hiphop2, R.drawable.hiphop3, R.drawable.hiphop4, R.drawable.hiphop5jpg,
+        R.drawable.hiphop6, R.drawable.hiphop7, R.drawable.hiphop8, R.drawable.hiphop9, R.drawable.hiphop10
+    )
+
 
     val genreAlbums = mapOf(
         "Pop" to popImages.mapIndexed { index, resId ->
             Album("Pop Hits ${index + 1}", "Pop Artist ${index + 1}", resId)
         },
-        "Hip-Hop" to List(10) { Album("Hip-Hop Album ${it + 1}", "Hip-Hop Artist ${it + 1}", R.drawable.kanye) },
+        "Hip-Hop" to hiphopImages.mapIndexed { index, resId ->
+            Album("Hip-Hop Hits ${index + 1}", "Hip-Hop Artist ${index + 1}", resId)
+        },
         "Rock" to List(10) { Album("Rock Album ${it + 1}", "Rock Artist ${it + 1}", R.drawable.spotify) },
         "Latin" to List(10) { Album("Latin Album ${it + 1}", "Latin Artist ${it + 1}", R.drawable.kanye) },
-        "Dance/Electronic" to List(10) { Album("Dance Album ${it + 1}", "Dance Artist ${it + 1}", R.drawable.spotify) },
+        "Electronic" to List(10) { Album("Electronic Album ${it + 1}", "Electronic Artist ${it + 1}", R.drawable.spotify) },
         "Indie" to List(10) { Album("Indie Album ${it + 1}", "Indie Artist ${it + 1}", R.drawable.kanye) },
-        "Chill" to List(10) { Album("Chill Album ${it + 1}", "Chill Artist ${it + 1}", R.drawable.spotify) },
-        "Workout" to List(10) { Album("Workout Album ${it + 1}", "Workout Artist ${it + 1}", R.drawable.kanye) }
+        "R&B" to List(10) { Album("R&B Album ${it + 1}", "R&B Artist ${it + 1}", R.drawable.spotify) },
+        "Jazz" to List(10) { Album("Jazz Album ${it + 1}", " Artist ${it + 1}", R.drawable.kanye) }
     )
 
     val filteredSongs = if (searchQuery.isEmpty()) {
