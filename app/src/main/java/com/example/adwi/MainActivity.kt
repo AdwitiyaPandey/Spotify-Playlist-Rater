@@ -42,10 +42,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable //used to make ui
 fun Mainbody() {
-    //Row {
-    //Text(text = "Hello")
-    //Text(text = "World")
-//}
+
     Column (
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.SpaceEvenly,
