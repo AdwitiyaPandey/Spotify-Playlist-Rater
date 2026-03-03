@@ -67,7 +67,7 @@ fun BeatsScreen(onBack: () -> Unit) {
             Spacer(modifier = Modifier.height(8.dp))
             
             Text(
-                text = "Ultimate beat making experience.",
+                text = "The ultimate beat-making experience.",
                 color = Color.Gray,
                 fontSize = 14.sp,
                 fontWeight = FontWeight.Medium
