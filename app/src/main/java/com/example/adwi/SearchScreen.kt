@@ -64,6 +64,10 @@ fun SearchScreen() {
         R.drawable.hiphop6, R.drawable.hiphop7, R.drawable.hiphop8, R.drawable.hiphop9, R.drawable.hiphop10
     )
 
+    val rockImage = listOf(
+        R.drawable.rock1, R.drawable.rock2, R.drawable.rock3, R.drawable.rock4, R.drawable.rock5,
+        R.drawable.rock6, R.drawable.rock7, R.drawable.rock8, R.drawable.rock9, R.drawable.rock10
+    )
 
     val genreAlbums = mapOf(
         "Pop" to popImages.mapIndexed { index, resId ->
