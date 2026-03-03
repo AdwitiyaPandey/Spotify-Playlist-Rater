@@ -12,8 +12,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.adwi.ui.theme.AdwiTheme
 
 @Composable
 fun ProfileScreen(userEmail: String, onLogout: () -> Unit) {
@@ -24,6 +26,7 @@ fun ProfileScreen(userEmail: String, onLogout: () -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .background(Color.Black)
             .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -108,10 +111,10 @@ fun ProfileScreen(userEmail: String, onLogout: () -> Unit) {
 
             Spacer(modifier = Modifier.height(32.dp))
 
-            // Profile Options
+
             ProfileOptionItem("Edit Profile") { isEditing = true }
             ProfileOptionItem("Settings and Privacy") { /* Handle action */ }
-            ProfileOptionItem("Premium Plans") { /* Handle action */ }
+            ProfileOptionItem("Beats") { /* Handle action */ }
         }
 
         Spacer(modifier = Modifier.weight(1f))
@@ -144,5 +147,13 @@ fun ProfileOptionItem(title: String, onClick: () -> Unit) {
             }
         }
         HorizontalDivider(color = Color.DarkGray, thickness = 0.5.dp)
+    }
+}
+
+@Preview(showBackground = true, backgroundColor = 0xFF000000)
+@Composable
+fun ProfileScreenPreview() {
+    AdwiTheme {
+        ProfileScreen(userEmail = "user@example.com", onLogout = {})
     }
 }
