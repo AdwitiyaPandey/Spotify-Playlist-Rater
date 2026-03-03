@@ -64,9 +64,14 @@ fun SearchScreen() {
         R.drawable.hiphop6, R.drawable.hiphop7, R.drawable.hiphop8, R.drawable.hiphop9, R.drawable.hiphop10
     )
 
-    val rockImage = listOf(
+    val rockImages = listOf(
         R.drawable.rock1, R.drawable.rock2, R.drawable.rock3, R.drawable.rock4, R.drawable.rock5,
         R.drawable.rock6, R.drawable.rock7, R.drawable.rock8, R.drawable.rock9, R.drawable.rock10
+    )
+
+    val houseImages = listOf(
+        R.drawable.house1, R.drawable.house2, R.drawable.house3, R.drawable.house4, R.drawable.house5,
+        R.drawable.house6, R.drawable.house7, R.drawable.house8, R.drawable.house9, R.drawable.house10
     )
 
     val genreAlbums = mapOf(
@@ -76,8 +81,15 @@ fun SearchScreen() {
         "Hip-Hop" to hiphopImages.mapIndexed { index, resId ->
             Album("Hip-Hop Hits ${index + 1}", "Hip-Hop Artist ${index + 1}", resId)
         },
+        "Rock" to rockImages.mapIndexed { index, resId ->
+            Album("Rock Hits ${index + 1}", "Rock Artist ${index + 1}", resId)
+        },
+        "House" to houseImages.mapIndexed { index, resId ->
+            Album("House Hits ${index + 1}", "House Artist ${index + 1}", resId)
+        },
+
         "Rock" to List(10) { Album("Rock Album ${it + 1}", "Rock Artist ${it + 1}", R.drawable.spotify) },
-        "Latin" to List(10) { Album("Latin Album ${it + 1}", "Latin Artist ${it + 1}", R.drawable.kanye) },
+        "House" to List(10) { Album("House Album ${it + 1}", "House Artist ${it + 1}", R.drawable.kanye) },
         "Electronic" to List(10) { Album("Electronic Album ${it + 1}", "Electronic Artist ${it + 1}", R.drawable.spotify) },
         "Indie" to List(10) { Album("Indie Album ${it + 1}", "Indie Artist ${it + 1}", R.drawable.kanye) },
         "R&B" to List(10) { Album("R&B Album ${it + 1}", "R&B Artist ${it + 1}", R.drawable.spotify) },
