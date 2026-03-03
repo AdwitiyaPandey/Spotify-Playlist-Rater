@@ -80,6 +80,11 @@ fun SearchScreen() {
 
     )
 
+    val jazzImages = listOf(
+        R.drawable.jazz1, R.drawable.jazz2, R.drawable.jazz3, R.drawable.jazz4, R.drawable.jazz5,
+        R.drawable.jazz6, R.drawable.jazz7, R.drawable.jazz8, R.drawable.jazz9, R.drawable.jazz10
+    )
+
     val genreAlbums = mapOf(
         "Pop" to popImages.mapIndexed { index, resId ->
             Album("Pop Hits ${index + 1}", "Pop Artist ${index + 1}", resId)
@@ -96,6 +101,11 @@ fun SearchScreen() {
         "Electronic" to electronicImages.mapIndexed { index, resId ->
             Album("Electronic Hits ${index + 1}", "Electronic Artist ${index + 1}", resId)
         },
+
+        "Jazz" to jazzImages.mapIndexed { index, resId ->
+            Album("Jazz Hits ${index + 1}", "Jazz Artist ${index + 1}", resId)
+        },
+
 
 
         "Rock" to List(10) { Album("Rock Album ${it + 1}", "Rock Artist ${it + 1}", R.drawable.spotify) },
