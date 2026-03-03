@@ -38,11 +38,11 @@ fun SearchScreen() {
         "Pop" to Color(0xFFE13300),
         "Hip-Hop" to Color(0xFFBC59FF),
         "Rock" to Color(0xFFE91429),
-        "Latin" to Color(0xFFE13300),
-        "Dance/Electronic" to Color(0xFFD84000),
-        "Indie" to Color(0xFFE91429),
-        "Chill" to Color(0xFF777777),
-        "Workout" to Color(0xFF1DB954)
+        "House" to Color(0xFFE13300),
+        "Electronic" to Color(0xFFD84000),
+        "Jazz" to Color(0xFFE91429),
+        "R&B" to Color(0xFF2D40BD),
+        "Boom Bap" to Color(0xFFA43D1F)
     )
 
     val songs = listOf(
@@ -74,6 +74,12 @@ fun SearchScreen() {
         R.drawable.house6, R.drawable.house7, R.drawable.house8, R.drawable.house9, R.drawable.house10
     )
 
+    val electronicImages = listOf(
+        R.drawable.electronic1, R.drawable.electronic2, R.drawable.electronic3, R.drawable.electronic4, R.drawable.electronic5,
+        R.drawable.electronic6, R.drawable.electronic7, R.drawable.electronic8, R.drawable.electronic9, R.drawable.electronic10
+
+    )
+
     val genreAlbums = mapOf(
         "Pop" to popImages.mapIndexed { index, resId ->
             Album("Pop Hits ${index + 1}", "Pop Artist ${index + 1}", resId)
@@ -87,6 +93,10 @@ fun SearchScreen() {
         "House" to houseImages.mapIndexed { index, resId ->
             Album("House Hits ${index + 1}", "House Artist ${index + 1}", resId)
         },
+        "Electronic" to electronicImages.mapIndexed { index, resId ->
+            Album("Electronic Hits ${index + 1}", "Electronic Artist ${index + 1}", resId)
+        },
+
 
         "Rock" to List(10) { Album("Rock Album ${it + 1}", "Rock Artist ${it + 1}", R.drawable.spotify) },
         "House" to List(10) { Album("House Album ${it + 1}", "House Artist ${it + 1}", R.drawable.kanye) },
