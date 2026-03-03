@@ -8,4 +8,5 @@ interface UserRepo {
     fun logout()
     fun isLoggedIn(): Boolean
     fun getCurrentUserEmail(): String?
+    fun forgotPassword(email: String, onResult: (Boolean, String?) -> Unit)
 }

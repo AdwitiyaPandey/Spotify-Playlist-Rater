@@ -1,9 +1,12 @@
 package com.example.adwi
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -23,110 +26,128 @@ fun ProfileScreen(userEmail: String, onLogout: () -> Unit) {
     var name by remember { mutableStateOf("User Name") } // Default name
     var email by remember { mutableStateOf(userEmail) }
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Color.Black)
-            .padding(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
+    Surface(
+        modifier = Modifier.fillMaxSize(),
+        color = Color.Black
     ) {
-        Spacer(modifier = Modifier.height(40.dp))
-
-        // Profile Picture Placeholder
-        Box(
+        Column(
             modifier = Modifier
-                .size(120.dp)
-                .clip(CircleShape)
-                .background(Color.DarkGray),
-            contentAlignment = Alignment.Center
+                .fillMaxSize()
+                .padding(24.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Icon(
-                imageVector = Icons.Default.Person,
-                contentDescription = null,
-                modifier = Modifier.size(80.dp),
-                tint = Color.Gray
-            )
-        }
+            Spacer(modifier = Modifier.height(52.dp))
 
-        Spacer(modifier = Modifier.height(24.dp))
-
-        if (isEditing) {
-            OutlinedTextField(
-                value = name,
-                onValueChange = { name = it },
-                label = { Text("Name", color = Color.Gray) },
-                modifier = Modifier.fillMaxWidth(),
-                colors = OutlinedTextFieldDefaults.colors(
-                    focusedTextColor = Color.White,
-                    unfocusedTextColor = Color.White,
-                    focusedBorderColor = Color(0xFF1DB954),
-                    unfocusedBorderColor = Color.Gray
+            // Profile Picture Placeholder
+            Box(
+                modifier = Modifier
+                    .size(124.dp)
+                    .clip(CircleShape)
+                    .background(Color(0xFF121212))
+                    .border(1.dp, Color.White.copy(alpha = 0.12f), CircleShape),
+                contentAlignment = Alignment.Center
+            ) {
+                Icon(
+                    imageVector = Icons.Default.Person,
+                    contentDescription = null,
+                    modifier = Modifier.size(80.dp),
+                    tint = Color.Gray.copy(alpha = 0.4f)
                 )
-            )
-            Spacer(modifier = Modifier.height(8.dp))
-            OutlinedTextField(
-                value = email,
-                onValueChange = { email = it },
-                label = { Text("Email", color = Color.Gray) },
-                modifier = Modifier.fillMaxWidth(),
-                colors = OutlinedTextFieldDefaults.colors(
-                    focusedTextColor = Color.White,
-                    unfocusedTextColor = Color.White,
-                    focusedBorderColor = Color(0xFF1DB954),
-                    unfocusedBorderColor = Color.Gray
-                )
-            )
-            Spacer(modifier = Modifier.height(16.dp))
-            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                Button(
-                    onClick = { isEditing = false },
-                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF1DB954))
-                ) {
-                    Text("Save", color = Color.Black)
-                }
-                OutlinedButton(
-                    onClick = { isEditing = false },
-                    border = ButtonDefaults.outlinedButtonBorder.copy(brush = androidx.compose.ui.graphics.SolidColor(Color.Gray))
-                ) {
-                    Text("Cancel", color = Color.White)
-                }
             }
-        } else {
-            Text(
-                text = name,
-                color = Color.White,
-                fontSize = 24.sp,
-                fontWeight = FontWeight.Bold
-            )
-            Text(
-                text = email,
-                color = Color.Gray,
-                fontSize = 16.sp
-            )
-            Text(
-                text = "Free Plan",
-                color = Color.Gray,
-                fontSize = 14.sp
-            )
 
-            Spacer(modifier = Modifier.height(32.dp))
+            Spacer(modifier = Modifier.height(28.dp))
 
+            if (isEditing) {
+                OutlinedTextField(
+                    value = name,
+                    onValueChange = { name = it },
+                    label = { Text("Name", color = Color.Gray) },
+                    modifier = Modifier.fillMaxWidth(),
+                    shape = RoundedCornerShape(14.dp),
+                    colors = OutlinedTextFieldDefaults.colors(
+                        focusedTextColor = Color.White,
+                        unfocusedTextColor = Color.White,
+                        focusedBorderColor = Color(0xFF1DB954),
+                        unfocusedBorderColor = Color.Gray
+                    )
+                )
+                Spacer(modifier = Modifier.height(10.dp))
+                OutlinedTextField(
+                    value = email,
+                    onValueChange = { email = it },
+                    label = { Text("Email", color = Color.Gray) },
+                    modifier = Modifier.fillMaxWidth(),
+                    shape = RoundedCornerShape(14.dp),
+                    colors = OutlinedTextFieldDefaults.colors(
+                        focusedTextColor = Color.White,
+                        unfocusedTextColor = Color.White,
+                        focusedBorderColor = Color(0xFF1DB954),
+                        unfocusedBorderColor = Color.Gray
+                    )
+                )
+                Spacer(modifier = Modifier.height(20.dp))
+                Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                    Button(
+                        onClick = { isEditing = false },
+                        colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF1DB954)),
+                        shape = RoundedCornerShape(22.dp),
+                        contentPadding = PaddingValues(horizontal = 24.dp, vertical = 12.dp)
+                    ) {
+                        Text("Save", color = Color.Black, fontWeight = FontWeight.SemiBold)
+                    }
+                    OutlinedButton(
+                        onClick = { isEditing = false },
+                        border = ButtonDefaults.outlinedButtonBorder(enabled = true).copy(brush = androidx.compose.ui.graphics.SolidColor(Color.Gray.copy(alpha = 0.5f))),
+                        shape = RoundedCornerShape(22.dp),
+                        contentPadding = PaddingValues(horizontal = 24.dp, vertical = 12.dp)
+                    ) {
+                        Text("Cancel", color = Color.White)
+                    }
+                }
+            } else {
+                Text(
+                    text = name,
+                    color = Color.White,
+                    fontSize = 24.sp,
+                    fontWeight = FontWeight.Bold
+                )
+                Spacer(modifier = Modifier.height(4.dp))
+                Text(
+                    text = email,
+                    color = Color.White.copy(alpha = 0.6f),
+                    fontSize = 14.sp
+                )
+                Spacer(modifier = Modifier.height(6.dp))
+                Text(
+                    text = "FREE PLAN",
+                    color = Color(0xFF1DB954),
+                    fontSize = 11.sp,
+                    fontWeight = FontWeight.Bold,
+                    letterSpacing = 1.2.sp
+                )
 
-            ProfileOptionItem("Edit Profile") { isEditing = true }
-            ProfileOptionItem("Settings and Privacy") { /* Handle action */ }
-            ProfileOptionItem("Beats") { /* Handle action */ }
-        }
+                Spacer(modifier = Modifier.height(40.dp))
 
-        Spacer(modifier = Modifier.weight(1f))
+                // Profile Options
+                ProfileOptionItem("Edit Profile") { isEditing = true }
+                ProfileOptionItem("Settings and Privacy") { /* Handle action */ }
+                ProfileOptionItem("Premium Plans") { /* Handle action */ }
+            }
 
-        Button(
-            onClick = onLogout,
-            colors = ButtonDefaults.buttonColors(containerColor = Color.Red),
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 32.dp, vertical = 16.dp)
-        ) {
-            Text("Logout", color = Color.White, fontWeight = FontWeight.Bold)
+            Spacer(modifier = Modifier.weight(1f))
+
+            Button(
+                onClick = onLogout,
+                colors = ButtonDefaults.buttonColors(containerColor = Color.Red.copy(alpha = 0.85f)),
+                shape = RoundedCornerShape(28.dp),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(56.dp)
+                    .padding(horizontal = 16.dp)
+            ) {
+                Text("Logout", color = Color.White, fontWeight = FontWeight.Bold, fontSize = 16.sp)
+            }
+            Spacer(modifier = Modifier.height(16.dp))
         }
     }
 }
@@ -137,16 +158,23 @@ fun ProfileOptionItem(title: String, onClick: () -> Unit) {
         TextButton(
             onClick = onClick,
             modifier = Modifier.fillMaxWidth(),
-            contentPadding = PaddingValues(vertical = 16.dp)
+            contentPadding = PaddingValues(vertical = 18.dp, horizontal = 8.dp)
         ) {
             Row(
                 modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.Start
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
             ) {
-                Text(text = title, color = Color.White, fontSize = 16.sp)
+                Text(text = title, color = Color.White, fontSize = 16.sp, fontWeight = FontWeight.Normal)
+                Icon(
+                    imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight,
+                    contentDescription = null,
+                    tint = Color.White.copy(alpha = 0.3f),
+                    modifier = Modifier.size(20.dp)
+                )
             }
         }
-        HorizontalDivider(color = Color.DarkGray, thickness = 0.5.dp)
+        HorizontalDivider(color = Color.White.copy(alpha = 0.08f), thickness = 0.5.dp)
     }
 }
 

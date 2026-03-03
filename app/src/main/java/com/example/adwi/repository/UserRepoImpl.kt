@@ -55,4 +55,15 @@ class UserRepoImpl : UserRepo {
     override fun getCurrentUserEmail(): String? {
         return auth.currentUser?.email
     }
+
+    override fun forgotPassword(email: String, onResult: (Boolean, String?) -> Unit) {
+        auth.sendPasswordResetEmail(email)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    onResult(true, null)
+                } else {
+                    onResult(false, task.exception?.message)
+                }
+            }
+    }
 }
