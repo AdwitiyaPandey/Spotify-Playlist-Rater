@@ -5,14 +5,13 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -54,9 +53,17 @@ fun SearchScreen() {
         Song("Heat Waves", "Glass Animals")
     )
 
-    // Sample albums data
+
+    val popImages = listOf(
+        R.drawable.pop1, R.drawable.pop2, R.drawable.pop3, R.drawable.pop4, R.drawable.pop5,
+        R.drawable.pop6, R.drawable.pop7, R.drawable.pop8, R.drawable.pop9, R.drawable.pop10
+    )
+
+
     val genreAlbums = mapOf(
-        "Pop" to List(10) { Album("Pop Album ${it + 1}", "Pop Artist ${it + 1}", R.drawable.spotify) },
+        "Pop" to popImages.mapIndexed { index, resId ->
+            Album("Pop Hits ${index + 1}", "Pop Artist ${index + 1}", resId)
+        },
         "Hip-Hop" to List(10) { Album("Hip-Hop Album ${it + 1}", "Hip-Hop Artist ${it + 1}", R.drawable.kanye) },
         "Rock" to List(10) { Album("Rock Album ${it + 1}", "Rock Artist ${it + 1}", R.drawable.spotify) },
         "Latin" to List(10) { Album("Latin Album ${it + 1}", "Latin Artist ${it + 1}", R.drawable.kanye) },
@@ -141,7 +148,7 @@ fun SearchScreen() {
             // Genre Details View
             Row(verticalAlignment = Alignment.CenterVertically) {
                 IconButton(onClick = { selectedCategory = null }) {
-                    Icon(Icons.Default.ArrowBack, contentDescription = "Back", tint = Color.White)
+                    Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back", tint = Color.White)
                 }
                 Text(
                     text = selectedCategory!!,
